@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Hospital Universidad de la Costa</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo2.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    footer {
+      margin-top: 50px;
+    }
+
+    .card {
+      margin-bottom: 100px; /* Ajusta este valor según sea necesario */
+    }
+  </style>
+  <script>
+    function validarFormulario() {
+      var tipodocumento = document.getElementById('tipodocumento').value;
+      var numerodocumento = document.getElementById('numeroDocumento').value;
+      var correoElectronico = document.getElementById('correoElectronico').value;
+      var password = document.getElementById('contrasena').value;
+      var cpassword = document.getElementById('confirmarContrasena').value;
+      var nombres = document.getElementById('nombres').value;
+      var apellidos = document.getElementById('apellidos').value;
+      var fechaNacimiento = document.getElementById('fechaNacimiento').value;
+      var direccion = document.getElementById('direccion').value;
+      var telefono = document.getElementById('telefono').value;
+      var aceptoTerminos = document.getElementById('aceptoTerminos').checked;
+    
+      // Validar que todos los campos estén rellenos
+      if (tipodocumento === '' || numerodocumento === '' || correoElectronico === '' || password === '' || cpassword === '' || nombres === '' || apellidos === '' || fechaNacimiento === '' || direccion === '' || telefono === '') {
+        alert('Por favor, complete todos los campos.');
+        return false;
+      }
+      
+      // Validar que el número de documento sea solo numérico
+      if (!/^[0-9]+$/.test(numerodocumento)) {
+        alert('El número de documento debe contener solo números.');
+        return false;
+      }
+      
+      // Validar que el teléfono sea solo numérico y no contenga espacios
+      if (!/^[0-9]+$/.test(telefono) || telefono.indexOf(' ') !== -1) {
+        alert('El teléfono debe contener solo números y no debe contener espacios.');
+        return false;
+      }
+      
+      // Validar que los nombres y apellidos sean solo texto y no contengan números
+      if (!/^[a-zA-Z]+$/.test(nombres) || !/^[a-zA-Z]+$/.test(apellidos)) {
+        alert('Los nombres y apellidos deben contener solo letras y no deben contener números.');
+        return false;
+      }
+    
+      // Validar la longitud mínima de la contraseña
+      if (password.length < 8) {
+        alert('La contraseña debe tener al menos 8 caracteres.');
+        return false;
+      }
+    
+      // Validar que las contraseñas coincidan
+      if (password !== cpassword) {
+        alert('Las contraseñas no coinciden.');
+        return false;
+      }
+    
+      // Validar que los términos y condiciones sean aceptados
+      if (!aceptoTerminos) {
+        alert('Debe aceptar los términos y condiciones.');
+        return false;
+      }
+    
+      return true;
+    }
+    function validarNumeroDocumento(event) {
+      var keyCode = event.keyCode || event.which;
+      var keyValue = String.fromCharCode(keyCode);
+    
+      if (keyValue === 'e') {
+        event.preventDefault();
+      }
+    }
+   
+    
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <img src="./assets/img/UNIVERSIDAD DE LA COSTA.png" alt="" class="img-fluid mx-auto d-block" style="max-width: 200px;">
+    <div class="row justify-content-center">
+      <div class="col-lg-3 col-md-6 col-sm-10 mx-auto">
+        <div class="card mt-5 border border-primary" style="border-width: 0px;">
+          <h2 class="text-center p-3 bg-primary text-white w-100%">Oficina Virtual</h2>
+          <div class="card-body">
+            <form action="./crear.php" method="post" onsubmit="return validarFormulario();">
+              <h1 class="text-primary">Regístrate</h1>
+              <div class="form-group mb-4">
+                <label for="tipodocumento">Tipo de documento:</label>
+                <select class="form-control" id="tipodocumento" name="tipodocumento">
+                  <option value="1">Cédula de ciudadanía</option>
+                  <option value="2">Tarjeta de identidad</option>
+                  <option value="3">Pasaporte</option>
+                </select>
+              </div>
+              <div class="form-group mb-4">
+                <label for="numeroDocumento">Número de documento:</label>
+                <input type="number" class="form-control" id="numeroDocumento" name="numerodocumento" placeholder="Ingresa tu número de documento" onkeypress="return validarNumeroDocumento(event)">
+              </div>
+              
+              <div class="form-group mb-4">
+                <label for="correoElectronico">Correo electrónico:</label>
+                <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" placeholder="Ingresa tu correo electrónico">
+              </div>
+              <div class="form-group mb-4">
+                <label for="contrasena">Crear Contraseña:</label>
+                <input type="password" name="password" class="form-control" id="contrasena" placeholder="Ingresa tu contraseña">
+                <small class="form-text text-muted">La contraseña debe tener al menos 10 caracteres y contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (!.@#$^&*).</small>
+              </div>
+              <div class="form-group mb-4">
+                <label for="confirmarContrasena">Confirmar contraseña:</label>
+                <input type="password" name="cpassword" class="form-control" id="confirmarContrasena" placeholder="Confirma tu contraseña">
+              </div>
+              <div class="form-group mb-4">
+                <label for="nombres">Nombres:</label>
+                <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingresa tus nombres">
+              </div>
+              <div class="form-group mb-4">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos">
+              </div>
+              <div class="form-group mb-4">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+              </div>
+              <div class="form-group mb-4">
+                <label for="direccion">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa tu dirección">
+              </div>
+              <div class="form-group mb-4">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingresa tu teléfono">
+              </div>
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="aceptoTerminos">
+                <label class="form-check-label" for="aceptoTerminos">Acepto los términos y condiciones</label>
+              </div>
+              <button id="registrate" class="btn btn-primary btn-block w-100">Crear Cuenta</button>
+              <p class="text-center">¿Ya tienes una cuenta? <a href="#" class="btn btn-link">Inicia sesión</a></p>
+            </form>
+            <div class="text-md-center">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bottom bg-light">
+    <div class="container py-3">
+      <p class="text-center">
+        Si necesitas ayuda con el acceso o registro a la oficina virtual, escríbenos al correo
+        <a href="mailto:ofivirtualafiliados@hospitalunicosta.com" style="color: blue;">ofivirtualafiliados@hospitalunicosta.com</a>
+        enviando copia del documento de identidad, teléfono de contacto, imagen y detalle de la inconsistencia.
+      </p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
